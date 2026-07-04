@@ -1,0 +1,6 @@
+{
+  "name": "Dakshin Foods",
+  "description": "Premium, high-performance Canadian food delivery service in British Columbia, featuring a 3D interface and intelligent AI assistant.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

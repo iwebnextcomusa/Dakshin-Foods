@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
+  --font-display: "Space Grotesk", sans-serif;
+
+  /* Natural Tones Palette */
+  --color-emerald-50: #f1f8e9;
+  --color-emerald-100: #dcedc8;
+  --color-emerald-200: #c5e1a5;
+  --color-emerald-300: #aed581;
+  --color-emerald-400: #9ccc65;
+  --color-emerald-500: #1B5E20; /* Primary Dakshin Forest Green */
+  --color-emerald-600: #1B5E20;
+  --color-emerald-700: #1B5E20;
+  --color-emerald-800: #123e16;
+  --color-emerald-900: #0d2b0f;
+  --color-emerald-950: #071909;
+
+  --color-amber-50: #fff3e0;
+  --color-amber-100: #ffe0b2;
+  --color-amber-200: #ffcc80;
+  --color-amber-300: #ffb74d;
+  --color-amber-400: #ffa726;
+  --color-amber-500: #F57C00; /* Primary Dakshin Warm Orange */
+  --color-amber-600: #F57C00;
+  --color-amber-700: #F57C00;
+  --color-amber-800: #c46300;
+  --color-amber-900: #934a00;
+  --color-amber-950: #623100;
+
+  --color-zinc-50: #F8F9FA;  /* Soft Grey background */
+  --color-zinc-100: #F1F3F5;
+  --color-zinc-200: #E9ECEF;
+  --color-zinc-300: #DEE2E6;
+  --color-zinc-400: #CED4DA;
+  --color-zinc-500: #ADB5BD;
+  --color-zinc-600: #6C757D;
+  --color-zinc-700: #495057;
+  --color-zinc-800: #343A40;
+  --color-zinc-900: #2D2D2D;  /* Deep Charcoal primary text */
+  --color-zinc-950: #1E2124;  /* Theme Darker Charcoal */
+}
+
+/* Custom transitions and scroll behaviors */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-zinc-50);
+  color: var(--color-zinc-900);
+}
