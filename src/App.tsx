@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { 
   ShoppingBag, Star, ShieldCheck, CheckCircle2, ChevronRight, Mail, 
   MapPin, Phone, Clock, Leaf, Info, Sparkles, MessageSquare, Utensils, 
-  ThumbsUp, Truck, Lock, UserCheck, Heart, Trash2, DollarSign
+  ThumbsUp, Truck, Lock, UserCheck, Heart, Trash2, DollarSign,
+  Volume2, VolumeX
 } from "lucide-react";
 
 // Types and Data
@@ -10,8 +11,11 @@ import { MenuItem, CartItem, OrderDetails, ContactMessage } from "./types";
 import { MENU_ITEMS, TESTIMONIALS, DELIVERY_AREAS, FAQS } from "./data";
 
 // Components
-import Header from "https://i0zlw9extgfmyc2g.public.blob.vercel-storage.com/Dakshin%20Group.mp4";
+import Header from "./components/Header";
 import ThreeDSection from "./components/ThreeDSection";
+
+// Promo video link uploaded by the user to represent our authentic South Indian culinary craftsmanship
+const DAKSHIN_PROMO_VIDEO = "https://i0zlw9extgfmyc2g.public.blob.vercel-storage.com/Dakshin%20Group.mp4";
 import ChatbotWidget from "./components/ChatbotWidget";
 import FooterSection from "./components/FooterSection";
 import MenuSection from "./components/MenuSection";
@@ -27,6 +31,7 @@ export default function App() {
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [isDarkMode, setIsDarkMode] = useState(false);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isHeroVideoMuted, setIsHeroVideoMuted] = useState(true);
 
   // Checkout pricing state transferred from Cart Drawer
   const [discountAmount, setDiscountAmount] = useState(0);
@@ -203,61 +208,87 @@ export default function App() {
         {activeTab === "home" && (
           <div className="space-y-0">
             
-            {/* HERO SECTION */}
-            <section className="relative overflow-hidden py-20 lg:py-28 bg-gradient-to-tr from-emerald-900/10 via-amber-500/5 to-white dark:from-zinc-950 dark:via-emerald-950/20 dark:to-zinc-950">
-              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            {/* HERO SECTION WITH BACKGROUND VIDEO */}
+            <section className="relative overflow-hidden py-28 lg:py-36 bg-black">
+              {/* Background Video */}
+              <video
+                src={DAKSHIN_PROMO_VIDEO}
+                autoPlay
+                muted={isHeroVideoMuted}
+                loop
+                playsInline
+                className="absolute inset-0 w-full h-full object-cover z-0 opacity-75"
+              />
+              {/* Premium dark gradient overlay for legibility */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/85 via-black/65 to-black/85 z-10" />
+
+              {/* Mute/Unmute Video Toggle Button */}
+              <button
+                id="hero-mute-toggle"
+                onClick={() => setIsHeroVideoMuted(!isHeroVideoMuted)}
+                className="absolute bottom-6 right-6 z-30 flex items-center space-x-1.5 bg-black/60 hover:bg-black/80 text-white backdrop-blur-md px-3 py-2 rounded-xl border border-white/10 text-xs font-semibold tracking-wider transition-all hover:scale-105 active:scale-95 cursor-pointer shadow-lg"
+                title={isHeroVideoMuted ? "Unmute Video Audio" : "Mute Video Audio"}
+              >
+                {isHeroVideoMuted ? (
+                  <>
+                    <VolumeX size={14} className="text-red-400 animate-pulse" />
+                    <span className="text-[11px]">Unmute Audio</span>
+                  </>
+                ) : (
+                  <>
+                    <Volume2 size={14} className="text-emerald-400" />
+                    <span className="text-[11px]">Mute Audio</span>
+                  </>
+                )}
+              </button>
+
+              <div className="relative z-20 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-8">
                 
-                {/* Hero left details */}
-                <div className="space-y-6 text-left">
-                  <div className="inline-flex items-center space-x-1 px-3 py-1 bg-amber-500/10 border border-amber-500/20 rounded-full text-amber-700 dark:text-amber-400 text-xs font-bold font-mono">
-                    <Sparkles size={12} className="animate-pulse" />
+                {/* Hero details centered */}
+                <div className="space-y-6 flex flex-col items-center">
+                  <div className="inline-flex items-center space-x-1 px-3 py-1 bg-emerald-500/15 border border-emerald-500/30 rounded-full text-emerald-400 text-xs font-bold font-mono">
+                    <Sparkles size={12} className="animate-pulse text-amber-400" />
                     <span>AUTHENTIC INDIAN KITCHEN IN BC</span>
                   </div>
 
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-zinc-900 dark:text-white tracking-tight leading-none">
-                    Fresh, Delicious Meals Delivered Across <span className="bg-gradient-to-r from-emerald-700 to-amber-600 dark:from-emerald-400 dark:to-amber-500 bg-clip-text text-transparent">British Columbia</span>
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-tight max-w-3xl drop-shadow-md">
+                    Fresh, Delicious Meals Delivered Across <span className="bg-gradient-to-r from-emerald-400 to-amber-400 bg-clip-text text-transparent">British Columbia</span>
                   </h1>
 
-                  <p className="text-zinc-600 dark:text-zinc-400 text-sm sm:text-base lg:text-lg leading-relaxed max-w-lg">
+                  <p className="text-zinc-200 text-sm sm:text-base lg:text-lg leading-relaxed max-w-2xl mx-auto drop-shadow-sm">
                     Experience authentic flavors delivered fresh to your doorstep. Crafted by master chefs using premium local ingredients and heritage recipes.
                   </p>
 
-                  <div className="flex flex-wrap gap-4 pt-2">
+                  <div className="flex flex-wrap gap-4 pt-2 justify-center">
                     <button
                       onClick={() => setActiveTab("menu")}
-                      className="px-6 py-3.5 rounded-xl bg-gradient-to-tr from-emerald-800 to-emerald-600 hover:scale-[1.03] text-white font-extrabold uppercase tracking-wider text-xs shadow-lg shadow-emerald-700/20 transition-all cursor-pointer"
+                      className="px-6 py-3.5 rounded-xl bg-gradient-to-tr from-emerald-600 to-emerald-500 hover:scale-[1.03] text-white font-extrabold uppercase tracking-wider text-xs shadow-lg shadow-emerald-700/30 transition-all cursor-pointer"
                     >
                       Order Now
                     </button>
                     <button
                       onClick={() => setActiveTab("menu")}
-                      className="px-6 py-3.5 rounded-xl border border-zinc-200 dark:border-zinc-800 text-zinc-700 dark:text-zinc-300 font-extrabold uppercase tracking-wider text-xs hover:bg-zinc-150/40 dark:hover:bg-zinc-900 transition-all cursor-pointer"
+                      className="px-6 py-3.5 rounded-xl border border-white/20 bg-white/5 text-white backdrop-blur-sm font-extrabold uppercase tracking-wider text-xs hover:bg-white/15 transition-all cursor-pointer"
                     >
                       View Menu
                     </button>
                   </div>
 
-                  {/* Trust markers */}
-                  <div className="grid grid-cols-3 gap-4 pt-6 border-t border-zinc-200/50 dark:border-zinc-800/50">
+                  {/* Trust markers centered */}
+                  <div className="grid grid-cols-3 gap-8 pt-8 border-t border-white/10 w-full max-w-xl mt-4">
                     <div>
-                      <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white block">100%</span>
-                      <span className="text-[10px] text-zinc-500 uppercase tracking-widest block font-mono">Sanitised Pack</span>
+                      <span className="text-xl sm:text-2xl font-black text-white block">100%</span>
+                      <span className="text-[10px] text-zinc-400 uppercase tracking-widest block font-mono">Sanitised Pack</span>
                     </div>
                     <div>
-                      <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white block">30 Min</span>
-                      <span className="text-[10px] text-zinc-500 uppercase tracking-widest block font-mono">Average Delivery</span>
+                      <span className="text-xl sm:text-2xl font-black text-white block">30 Min</span>
+                      <span className="text-[10px] text-zinc-400 uppercase tracking-widest block font-mono">Average Delivery</span>
                     </div>
                     <div>
-                      <span className="text-xl sm:text-2xl font-black text-zinc-900 dark:text-white block">4.9★</span>
-                      <span className="text-[10px] text-zinc-500 uppercase tracking-widest block font-mono">5,000+ Reviews</span>
+                      <span className="text-xl sm:text-2xl font-black text-white block">4.9★</span>
+                      <span className="text-[10px] text-zinc-400 uppercase tracking-widest block font-mono">5,000+ Reviews</span>
                     </div>
                   </div>
-                </div>
-
-                {/* Hero right: Dynamic Three.js platter container */}
-                <div className="relative h-[400px] w-full rounded-3xl overflow-hidden border border-zinc-200/50 dark:border-zinc-850 shadow-md">
-                  <div className="absolute inset-0 bg-gradient-to-br from-zinc-50 to-white dark:from-zinc-950 dark:to-zinc-900" />
-                  <ThreeDSection />
                 </div>
 
               </div>
@@ -438,6 +469,66 @@ export default function App() {
                       Need updates? Speak immediately with our helpful BC central helpdesk by dialing +1 (778) 288-8261.
                     </p>
                   </div>
+                </div>
+              </div>
+            </section>
+
+            {/* BRAND STORY & KITCHEN PRESENTATION VIDEO */}
+            <section className="py-16 bg-white dark:bg-zinc-950 border-y border-zinc-100 dark:border-zinc-900">
+              <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                  
+                  {/* Left Column: Story Details */}
+                  <div className="lg:col-span-5 space-y-6 text-left">
+                    <div className="inline-flex items-center space-x-1.5 px-3 py-1 bg-emerald-50 dark:bg-emerald-950/40 border border-emerald-100 dark:border-emerald-900/30 rounded-full text-emerald-700 dark:text-emerald-400 text-xs font-extrabold uppercase tracking-wider">
+                      <Sparkles size={12} className="text-amber-500 animate-pulse" />
+                      <span>Experience Dakshin Group</span>
+                    </div>
+                    <h2 className="text-3xl font-extrabold text-zinc-900 dark:text-white tracking-tight leading-tight">
+                      Crafting Heritage Flavors with Canadian Quality
+                    </h2>
+                    <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+                      Watch our master chefs grind the organic grains, ferment our proprietary stone-ground batters, and bake thin, crispy masala dosas to golden perfection in our British Columbia facilities.
+                    </p>
+                    <div className="space-y-3.5 pt-2">
+                      <div className="flex items-start space-x-3">
+                        <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5 animate-pulse">
+                          <CheckCircle2 size={12} />
+                        </div>
+                        <div className="text-xs">
+                          <strong className="text-zinc-800 dark:text-zinc-200">100% Stone-Ground Batters:</strong> Organic rice and black lentils soaked for hours and stone-crushed for original light and airy textures.
+                        </div>
+                      </div>
+                      <div className="flex items-start space-x-3">
+                        <div className="w-5 h-5 rounded-full bg-emerald-100 dark:bg-emerald-950/50 flex items-center justify-center text-emerald-700 dark:text-emerald-400 shrink-0 mt-0.5 animate-pulse">
+                          <CheckCircle2 size={12} />
+                        </div>
+                        <div className="text-xs">
+                          <strong className="text-zinc-800 dark:text-zinc-200">Zero Artificial Preservatives:</strong> Absolute pure ingredients prepared fresh on-demand for maximum nutritional health and taste.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Right Column: Premium Video Player Card */}
+                  <div className="lg:col-span-7">
+                    <div className="relative aspect-video rounded-3xl overflow-hidden shadow-2xl border border-zinc-200/50 dark:border-zinc-800 bg-black group">
+                      <video
+                        src={DAKSHIN_PROMO_VIDEO}
+                        controls
+                        autoPlay
+                        muted
+                        loop
+                        playsInline
+                        className="w-full h-full object-cover"
+                      />
+                      <div className="absolute bottom-4 left-4 z-10 bg-black/60 backdrop-blur-md px-3 py-1.5 rounded-xl border border-white/10 text-[10px] text-white font-mono font-medium flex items-center space-x-2">
+                        <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                        <span>Dakshin Group Culinary Story.mp4</span>
+                      </div>
+                    </div>
+                  </div>
+
                 </div>
               </div>
             </section>
@@ -917,7 +1008,7 @@ export default function App() {
       {cartItems.length > 0 && activeTab !== "checkout" && activeTab !== "tracking" && (
         <button
           onClick={() => setIsCartOpen(true)}
-          className="fixed bottom-6 left-6 z-40 h-14 w-14 rounded-full bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-xl flex items-center justify-center cursor-pointer transition-all hover:scale-108 active:scale-95 group animate-pulse"
+          className="fixed bottom-6 left-6 z-40 h-14 w-14 rounded-full bg-amber-500 hover:bg-amber-400 text-zinc-950 shadow-xl flex items-center justify-center cursor-pointer transition-all hover:scale-108 active:scale-95 group animate-slide-in-up"
           title="Open Order Bag"
           id="floating-cart-btn"
         >
