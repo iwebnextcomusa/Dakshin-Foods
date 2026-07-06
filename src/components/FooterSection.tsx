@@ -1,6 +1,8 @@
 import React from "react";
 import { Facebook, Instagram, Twitter, MapPin, Phone, Mail, ArrowUp } from "lucide-react";
 
+const brandLogo = "/src/assets/images/dakshin_logo_1783354057225.jpg";
+
 interface FooterProps {
   setActiveTab: (tab: string) => void;
 }
@@ -24,7 +26,15 @@ export default function FooterSection({ setActiveTab }: FooterProps) {
           
           {/* Column 1: Brand & Bio */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2.5">
+              <div className="w-8 h-8 rounded-lg overflow-hidden border border-zinc-800 flex items-center justify-center shrink-0 bg-amber-500">
+                <img
+                  src={brandLogo}
+                  alt="Dakshin Logo"
+                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover"
+                />
+              </div>
               <span className="text-xl font-bold bg-gradient-to-r from-emerald-400 to-amber-500 bg-clip-text text-transparent">
                 Dakshin Foods
               </span>

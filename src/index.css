@@ -5,30 +5,30 @@
   --font-sans: "Outfit", "Inter", system-ui, -apple-system, sans-serif;
   --font-display: "Space Grotesk", sans-serif;
 
-  /* Natural Tones Palette */
-  --color-emerald-50: #f1f8e9;
-  --color-emerald-100: #dcedc8;
-  --color-emerald-200: #c5e1a5;
-  --color-emerald-300: #aed581;
-  --color-emerald-400: #9ccc65;
-  --color-emerald-500: #1B5E20; /* Primary Dakshin Forest Green */
-  --color-emerald-600: #1B5E20;
-  --color-emerald-700: #1B5E20;
-  --color-emerald-800: #123e16;
-  --color-emerald-900: #0d2b0f;
-  --color-emerald-950: #071909;
+  /* Natural Tones Palette - Redefined to match Dakshin Logo (Orange & Roast Brown) */
+  --color-emerald-50: #fcf7f2;
+  --color-emerald-100: #f6e6da;
+  --color-emerald-200: #eecdb7;
+  --color-emerald-300: #e2aa87;
+  --color-emerald-400: #cd7b48;
+  --color-emerald-500: #5D4037; /* Primary Dakshin Roast Brown (mandala brown) */
+  --color-emerald-600: #4E342E; /* Rich roast brown */
+  --color-emerald-700: #3E2723; /* Dark mahogany/black-brown */
+  --color-emerald-800: #2E1C18;
+  --color-emerald-900: #1F100C;
+  --color-emerald-950: #120604;
 
-  --color-amber-50: #fff3e0;
-  --color-amber-100: #ffe0b2;
-  --color-amber-200: #ffcc80;
-  --color-amber-300: #ffb74d;
-  --color-amber-400: #ffa726;
-  --color-amber-500: #F57C00; /* Primary Dakshin Warm Orange */
-  --color-amber-600: #F57C00;
-  --color-amber-700: #F57C00;
-  --color-amber-800: #c46300;
-  --color-amber-900: #934a00;
-  --color-amber-950: #623100;
+  --color-amber-50: #fffcf5;
+  --color-amber-100: #fbebc3;
+  --color-amber-200: #f7d88c;
+  --color-amber-300: #f4bf54;
+  --color-amber-400: #fca823;
+  --color-amber-500: #f99f1b; /* Exact Dakshin Vibrant Orange from the logo */
+  --color-amber-600: #e08810;
+  --color-amber-700: #c37207;
+  --color-amber-800: #a35c00;
+  --color-amber-900: #7d4400;
+  --color-amber-950: #542b00;
 
   --color-zinc-50: #F8F9FA;  /* Soft Grey background */
   --color-zinc-100: #F1F3F5;

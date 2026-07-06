@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { ShoppingBag, Moon, Sun, Menu, X, User, ShieldAlert, LogIn, UtensilsCrossed } from "lucide-react";
 
+const brandLogo = "/src/assets/images/dakshin_logo_1783354057225.jpg";
+
 interface HeaderProps {
   activeTab: string;
   setActiveTab: (tab: string) => void;
@@ -47,8 +49,13 @@ export default function Header({
             onClick={() => handleNavClick("home")}
             className="flex items-center space-x-2 cursor-pointer group"
           >
-            <div className="p-2 rounded-xl bg-gradient-to-tr from-emerald-600 to-amber-500 text-white shadow-md group-hover:scale-105 transition-transform duration-300">
-              <UtensilsCrossed size={20} />
+            <div className="w-10 h-10 rounded-xl overflow-hidden border border-zinc-200/50 dark:border-zinc-800 shadow-md group-hover:scale-105 transition-transform duration-300 flex items-center justify-center bg-amber-500">
+              <img
+                src={brandLogo}
+                alt="Dakshin Foods Logo"
+                referrerPolicy="no-referrer"
+                className="w-full h-full object-cover"
+              />
             </div>
             <div className="flex flex-col">
               <span className="text-xl font-bold tracking-tight bg-gradient-to-r from-emerald-700 to-amber-600 dark:from-emerald-400 dark:to-amber-500 bg-clip-text text-transparent">
